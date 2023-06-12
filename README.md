@@ -1,3 +1,3 @@
-# shy-app-vue3
+## uniapp 基础框架
 
-uniapp基础框架vue3.0
+采用 vue3 和官网原生组件编译
