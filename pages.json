@@ -1,0 +1,87 @@
+{
+	"pages": [
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},{
+			"path": "pages/upgrade", //此页面只作用于app，小程序不支持此页面
+			"style": {
+				"navigationStyle": "custom", // 取消本页面的导航栏
+				"app-plus": {
+					"animationType": "fade-in", // 设置fade-in淡入动画，为最合理的动画类型
+					"background": "transparent", // 背景透明
+					"backgroundColor": "rgba(0,0,0,0)", // 背景透明
+					"popGesture": "none" // 关闭IOS屏幕左边滑动关闭当前页面的功能
+				}
+			}
+		},
+		{
+		  "path": "pages/home/index",
+		  "style": {
+		    "navigationBarTitleText": "3h1基础模板",
+		    // "navigationStyle": "custom",
+		    "enablePullDownRefresh": true,
+		    "app-plus": {
+		      "animationType": "pop-in",
+		      "animationDuration": 300
+		    }
+		  }
+		},
+		{
+			"path": "pages/workbrench/index",
+			"style": {
+				"navigationBarTitleText": "工作台",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "3h1基础模板",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#666666",
+		"selectedColor": "#FE3B25",
+		"borderStyle": "white",
+		"backgroundColor": "#fff",
+		"list": [{
+				"pagePath": "pages/home/index",
+				"iconPath": "static/images/tabbar/home.png",
+				"selectedIconPath": "static/images/tabbar/home-s.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/workbrench/index",
+				"iconPath": "static/images/tabbar/work.png",
+				"selectedIconPath": "static/images/tabbar/work-s.png",
+				"text": "工作台"
+			},
+			{
+				"pagePath": "pages/user/index",
+				"iconPath": "static/images/tabbar/user.png",
+				"selectedIconPath": "static/images/tabbar/user-s.png",
+				"text": "我的"
+			}
+		]
+	}
+}
