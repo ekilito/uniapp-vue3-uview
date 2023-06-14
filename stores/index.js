@@ -32,6 +32,7 @@ const useStore = defineStore('store', {
 		return {
 			userInfo: lifeData.userInfo || {},
 			loginForm: lifeData.loginForm || {},
+			version:''
 		};
 	},
 	// 也可以这样定义

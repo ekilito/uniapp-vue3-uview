@@ -1,10 +1,10 @@
 <template>
 	<view class="code-form">
-		<uni-forms ref="lloginFormRef" label-width="100" :rules="formRules" validateTrigger="blur" :model="form">
-			<uni-forms-item label="手机号码:" name="phone">
+		<uni-forms ref="lloginFormRef"  :rules="formRules" validateTrigger="blur" :model="form">
+			<uni-forms-item label="手机号码:" name="phone" label-width="100">
 				<uni-easyinput type="text" v-model="form.phone" placeholder="请输入手机号码" />
 			</uni-forms-item>
-			<uni-forms-item  label="验证码:" name="code">
+			<uni-forms-item  label="验证码:" name="code" label-width="100">
 <view style="display: flex;">
 	<uni-easyinput type="code" v-model="form.code" placeholder="请输入验证码" />
 	<button class="code-btn" size="mini" :disabled="isCountDown" @click="handleGetCode">{{ isCountDown ? countDown + 's' : '获取验证码' }}</button>
@@ -93,7 +93,6 @@ const handleSubmit = async () => {
 //获取验证码
 const handleGetCode = async () => {
 	const flag = await lloginFormRef.value.validateField('phone')
-	console.log(flag)
 	if(!form.phone)return
 	countDown.value = 60;
 	isCountDown.value = true;
@@ -120,14 +119,12 @@ const handleGetCode = async () => {
 	width: 160rpx;
 	color: $uni-white;
 	background-color: $uni-success;
-	font-size: 14rpx;
+	font-size: 20rpx;
 	line-height: 70rpx;
 }
 
 .login-btn {
 	width: 100%;
-	height: 70rpx;
-	line-height: 70rpx;
 	margin-top: 40rpx;
 }
 </style>

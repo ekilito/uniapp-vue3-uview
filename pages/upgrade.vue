@@ -1,11 +1,11 @@
 <!-- 此页面只作用于app，小程序不支持此页面 -->
 <template>
-	<uni-popup ref="upDialogRef" type="dialog" :mask-click="false">
-		<uni-popup-dialog type="warn" cancelText="取消" confirmText="升级" :title="info.title" @confirm="handleConfirm" @close="handleCancel">
+	<uni-popup ref="upDialogRef" type="dialog" :is-mask-click="false">
+		<uni-popup-dialog type="warn" cancelText="取消" confirmText="升级" :title="info.title" @confirm="handleConfirm" @close="handleCancel" :before-close="true">
 			<view class="update-content">
-				<view v-if="!info.downloding" class="up-tips">版本: {{ info.currentVersion }} -> {{ info.vuex_version }}</view>
-				<view v-else>
-					<progress activeColor="#55aa00" :percent="downInfo.percent" stroke-width="10" :active="true" />
+				<view v-if="!info.downloding" class="up-tips">版本: {{ info.currentVersion }} -> {{ info.version }}</view>
+				<view v-else class="up-tips">
+					<progress style="width:500rpx" activeColor="#55aa00" :percent="downInfo.percent" stroke-width="10" :active="true" />
 					<view>已下载：{{ downInfo.totalBytesWritten + 'M / ' + downInfo.totalBytesExpectedToWrite + 'M' }}</view>
 				</view>
 			</view>
@@ -16,16 +16,20 @@
 <script setup>
 import { onReady } from '@dcloudio/uni-app';
 import { reactive, ref } from 'vue';
+import useStore from '@/stores';
 import appConfig from '/config/index.js';
 
+const Store = useStore();
 const info = reactive({
 	currentVersion: plus.runtime.version,
+	version: '',
 	title: '发现新版本',
 	downloding: false
 });
 const upDialogRef = ref();
 
 onReady(() => {
+	info.version = Store.version;
 	upDialogRef.value.open();
 });
 const downInfo = reactive({
@@ -75,7 +79,7 @@ const handleConfirm = () => {
 
 	//下载进度
 	downloadTask.onProgressUpdate((res) => {
-		downInfo.percent = res.progress;
+			downInfo.percent = res.progress;
 		downInfo.totalBytesWritten = (res.totalBytesWritten / 1024 / 1024).toFixed(2);
 		downInfo.totalBytesExpectedToWrite = (res.totalBytesExpectedToWrite / 1024 / 1024).toFixed(2);
 	});
@@ -86,7 +90,7 @@ const handleConfirm = () => {
 .update-content {
 	font-size: 26rpx;
 	line-height: 1.7;
-	padding: 30rpx;
+	// padding: 30rpx;
 
 	.up-tips {
 		width: 100%;

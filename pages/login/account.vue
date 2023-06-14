@@ -119,8 +119,6 @@ onLoad(() => {
 
 .login-btn {
 	width: 100%;
-	height: 70rpx;
-	line-height: 70rpx;
 	margin-top: 40rpx;
 }
 </style>

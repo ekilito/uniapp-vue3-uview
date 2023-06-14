@@ -2,28 +2,26 @@
 import { onLaunch } from '@dcloudio/uni-app';
 import config from '@/config/index.js';
 import useStore from '@/stores/index.js';
-import { createPinia } from 'pinia';
-const pinia = createPinia();
-const Store = useStore(pinia);
-import {
-	versionApi
-} from '@/api/login.js'
+let Store = null;
+import { versionApi } from '@/api/login.js';
 
 onLaunch(() => {
-	refreshJudge()
+	getVersion();
 	// #ifdef APP-PLUS
-	process.env.NODE_ENV === 'development' ? refreshJudge() : getVersion();
+	// process.env.NODE_ENV === 'development' ? refreshJudge() : getVersion();
 	// #endif
 });
 
 //判断版本
 const getVersion = async () => {
+	Store = useStore()
 	const res = await versionApi({
 		applicationLogo: config.applicationLogo
 	});
 	let version = res.data.data.version;
 	//版本检查
 	if (version !== plus.runtime.version) {
+		Store.set('version', version);
 		uni.reLaunch({
 			url: '/pages/upgrade'
 		});
