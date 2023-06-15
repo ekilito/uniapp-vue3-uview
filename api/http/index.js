@@ -30,12 +30,10 @@ Http.interceptor.request = (config) => {
 };
 //响应后
 Http.interceptor.response = (res) => {
-	console.log(res);
 	// 如果把originalData设置为了true，这里得到将会是服务器返回的所有的原始数据
 	// 判断可能变成了res.statueCode，或者res.data.code之类的，请打印查看结果
 	if (res.statusCode == 200) {
-		const data = res.data.data;
-		return res.data.code == 200 ? data : res.data;
+		return res.data.code == 200 ? res.data.data : res.data;
 	} else if (res.statusCode == 401) {
 		Store.set('userInfo', {});
 		uni.showToast({
@@ -46,15 +44,14 @@ Http.interceptor.response = (res) => {
 		uni.reLaunch({
 			url: '/pages/login/index'
 		});
-		// return false
 		throw res.data
 	} else {
 		uni.showToast({
 			title: '当前网络不稳定，请稍后再试!',
 			mask: true,
-			icon:'error'
+			icon:'none',
+			duration:2000
 		});
-		// return false
 		throw res.data
 	}
 };

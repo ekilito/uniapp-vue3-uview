@@ -9,8 +9,8 @@
 		</view>
 		<uni-list>
 			<uni-list-item title="个人信息" showArrow clickable link="navigateTo" to="/pages/user/setting"></uni-list-item>
-			<uni-list-item title="修改密码" showArrow clickable link="navigateTo" to="/pages/user/updataPassword"></uni-list-item>
-			<uni-list-item title="关于我们" showArrow clickable link="navigateTo" to="/pages/user/aboutUS"></uni-list-item>
+			<uni-list-item title="修改密码" showArrow clickable link="navigateTo" to="/pages/user/editPassword"></uni-list-item>
+			<uni-list-item title="关于我们" showArrow clickable link="navigateTo" to="/pages/user/about"></uni-list-item>
 		</uni-list>
 		<button class="login-out-btn" size="default" @click="handleLoginOut">退出登录</button>
 	</view>
@@ -50,7 +50,7 @@ const handleLoginOut = () => {
 
 <style scoped lang="scss">
 .user-info{
-	padding: 40rpx 60rpx;
+	padding: 80rpx 60rpx;
 	background-color: $uni-main-color;
 	display: flex;
 	.base-info{
@@ -60,8 +60,8 @@ const handleLoginOut = () => {
 }
 
 .login-out-btn{
-	margin-top: 20rpx;
-	width: 600rpx;
+	margin-top: 80rpx;
+	width: 700rpx;
 	background-color: $uni-warning;
 	color: $uni-white;
 }

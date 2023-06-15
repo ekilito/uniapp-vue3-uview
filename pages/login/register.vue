@@ -110,7 +110,7 @@ const handleSubmit = async () => {
 
 <style scoped lang="scss">
 .account-form {
-	margin-top: 50rpx;
+	margin-top: 100rpx;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -118,8 +118,6 @@ const handleSubmit = async () => {
 
 .login-btn {
 	width: 100%;
-	height: 70rpx;
-	line-height: 70rpx;
 	margin-top: 40rpx;
 }
 </style>

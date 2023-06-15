@@ -81,14 +81,15 @@ const handleSubmit = async () => {
 	form.phone = trim(form.phone, 'all');
 	let valid = await loginFormRef.value.validate();
 	if (!valid) return;
-	Store.set('loginForm', form);
 	let info = deepClone(form);
 	info.password = md5(info.password);
-	const res = await loginApi({
-		tenantId: info.tenantId,
-		username: info.phone,
-		password: info.password
-	});
+	// const res = await loginApi({
+	// 	tenantId: info.tenantId,
+	// 	username: info.phone,
+	// 	password: info.password
+	// });
+	Store.set('loginForm', form);
+	// Store.set('userInfo', res);
 	uni.showLoading({
 		title: '登录成功',
 		mask: true
@@ -111,7 +112,7 @@ onLoad(() => {
 
 <style scoped lang="scss">
 .account-form {
-	margin-top: 50rpx;
+	margin-top: 100rpx;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -119,8 +120,5 @@ onLoad(() => {
 
 .login-btn {
 	width: 100%;
-	height: 70rpx;
-	line-height: 70rpx;
-	margin-top: 40rpx;
 }
 </style>
