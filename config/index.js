@@ -1,20 +1,22 @@
 let online = {
-	baseUrl: 'https://wx.3h1china.com/wms-api',
-	action: 'https://wx.3h1china.com/wms-api/business/file/upload',
-	img_path: 'https://wx.3h1china.com/wms-minio/',
-	applicationLogo: '212052e317304c218a68087a50b8fcd3',
-	download_path: 'https://3h1-wms.oss-cn-hangzhou.aliyuncs.com/apk/212052e317304c218a68087a50b8fcd3/app-release.apk',
-	version: '正式版本'
+	version: '正式版本',
+	baseUrl: 'https://xxx/api', //接口地址
+	action: 'https://xxx/business/file/upload',//文件上传地址
+	img_path: 'https://xxx/minio/',//静态文件前缀
+	applicationLogo: 'xxx',//当前app在移动端管理平台的唯一索引
+	download_path: 'https://3h1-wms.oss-cn-hangzhou.aliyuncs.com/apk/xxx/app-release.apk',//更新下载地址
 };
 
 let dev = {
-	baseUrl: 'http://192.168.1.240:38800/api',
-	action: 'http://29w072407s.wicp.vip:8091/blade-wms/business/file/upload',
-	img_path: 'http://29w072407s.wicp.vip:9100/wms/',
-	applicationLogo: 'be5594c53b4343b7898ad7c306693e74',
-	download_path: 'https://3h1-wms.oss-cn-hangzhou.aliyuncs.com/apk/be5594c53b4343b7898ad7c306693e74/app-release.apk',
-	version: '测试版本'
+	version: '测试版本',
+	baseUrl: 'http://xxx:38800/api',
+	action: 'http://xxx/business/file/upload',
+	img_path: 'http://xxx/',
+	applicationLogo: 'xxxx',
+	download_path: 'https://3h1-wms.oss-cn-hangzhou.aliyuncs.com/apk/xxxxx/app-release.apk',
 };
 
-let config = process.env.NODE_ENV === 'development' ? dev : online;
-export default config;
+//根据要打的app包注释不同的ip
+
+// export default online;
+export default dev;

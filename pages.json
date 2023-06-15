@@ -1,11 +1,21 @@
 {
-	"pages": [
+	"pages": [{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		},
 		{
 			"path": "pages/login/index",
 			"style": {
 				"navigationStyle": "custom"
 			}
-		},{
+		},
+		{
 			"path": "pages/upgrade", //此页面只作用于app，小程序不支持此页面
 			"style": {
 				"navigationStyle": "custom", // 取消本页面的导航栏
@@ -18,16 +28,16 @@
 			}
 		},
 		{
-		  "path": "pages/home/index",
-		  "style": {
-		    "navigationBarTitleText": "3h1基础模板",
-		    // "navigationStyle": "custom",
-		    "enablePullDownRefresh": true,
-		    "app-plus": {
-		      "animationType": "pop-in",
-		      "animationDuration": 300
-		    }
-		  }
+			"path": "pages/home/index",
+			"style": {
+				"navigationBarTitleText": "3h1基础模板",
+				// "navigationStyle": "custom",//自定义导航头
+				"enablePullDownRefresh": true, //下拉刷新
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
 		},
 		{
 			"path": "pages/workbrench/index",
@@ -40,9 +50,29 @@
 			}
 		},
 		{
-			"path": "pages/user/index",
+			"path": "pages/user/setting",
 			"style": {
-				"navigationBarTitleText": "个人中心",
+				"navigationBarTitleText": "个人信息",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		},
+		{
+			"path": "pages/user/editPassword",
+			"style": {
+				"navigationBarTitleText": "修改密码",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		},
+		{
+			"path": "pages/user/about",
+			"style": {
+				"navigationBarTitleText": "关于我们",
 				"app-plus": {
 					"animationType": "pop-in",
 					"animationDuration": 300
@@ -53,8 +83,8 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "3h1基础模板",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF",
 		"app-plus": {
 			"background": "#efeff4"
 		}

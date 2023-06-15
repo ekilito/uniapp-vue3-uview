@@ -6,7 +6,7 @@
 			<view class="wecome" v-if="activeName != 'register'">欢迎登录</view>
 			<view class="wecome" v-else>欢迎注册</view>
 		</view>
-		<view style="width: 100%">
+		<view style="width: 100%" >
 			<account v-if="activeName == 'account'"></account>
 			<codeLogin v-else-if="activeName == 'code'"></codeLogin>
 			<register v-else-if="activeName == 'register'" @change-login="activeName = 'account'" @changeFormType="handleChangeType('account')"></register>
@@ -64,7 +64,11 @@ const handleChangeType = (playload) => {
 }
 
 .login-head {
-	margin-top: 40rpx;
+	margin-top: 140rpx;
+	height: 300rpx;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
 
 	.title {
 		font-size: 50rpx;
@@ -100,4 +104,5 @@ const handleChangeType = (playload) => {
 	color: #333;
 	text-align: center;
 }
+
 </style>

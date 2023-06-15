@@ -6,9 +6,8 @@ let Store = null;
 import { versionApi } from '@/api/login.js';
 
 onLaunch(() => {
-	getVersion();
 	// #ifdef APP-PLUS
-	// process.env.NODE_ENV === 'development' ? refreshJudge() : getVersion();
+	process.env.NODE_ENV === 'development' ? refreshJudge() : getVersion();
 	// #endif
 });
 
@@ -18,7 +17,7 @@ const getVersion = async () => {
 	const res = await versionApi({
 		applicationLogo: config.applicationLogo
 	});
-	let version = res.data.data.version;
+	let version = res.version;
 	//版本检查
 	if (version !== plus.runtime.version) {
 		Store.set('version', version);
@@ -66,6 +65,8 @@ const refreshToken = async () => {
 /* #ifndef APP-NVUE */
 @import '@/style/customicons.css';
 /* #endif */
+
+@import '@/style/index.scss';
 
 // 设置整个项目的背景色
 page {

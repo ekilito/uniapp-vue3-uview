@@ -11,4 +11,4 @@ export const loginApi = (params) =>
 
 //获取版本
 export const versionApi = (params) => 
-	Http.get('http://29w072407s.wicp.vip:8099/api/common/get-version', params)
+	Http.get('http://117.71.48.19:8099/api/common/get-version', params)

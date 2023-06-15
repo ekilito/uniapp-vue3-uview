@@ -1,18 +1,18 @@
 <template>
-	<view class="user-setting">
-		<uni-forms ref="formRef" :rules="formRules" validateTrigger="blur" :model="form">
-			<uni-forms-item label="手机号码:" name="phone">
-				<uni-easyinput type="text" v-model="form.phone" :disabled="true" placeholder="请输入手机号码" />
-			</uni-forms-item>
-			<uni-forms-item label="姓名:" name="realName">
-				<uni-easyinput type="text" v-model="form.realName"  placeholder="请输入姓名" />
-			</uni-forms-item>
-			<uni-forms-item label="邮箱:" name="email">
-				<uni-easyinput type="text" v-model="form.email"  placeholder="请输入邮箱" />
-			</uni-forms-item>
-		</uni-forms>
-		<button class="submit-btn" size="default" @click="handleSubmit">保存</button>
-	</view>
+		<uni-card>
+			<uni-forms class="from" ref="formRef" :label-width="72" :rules="formRules" validateTrigger="blur" :model="form">
+				<uni-forms-item label="手机号码:" name="phone">
+					<uni-easyinput type="text" v-model="form.phone" :disabled="true" placeholder="请输入手机号码" />
+				</uni-forms-item>
+				<uni-forms-item label="用户名:" name="realName">
+					<uni-easyinput type="text" v-model="form.realName" placeholder="请输入用户名" />
+				</uni-forms-item>
+				<uni-forms-item label="邮箱:" name="email">
+					<uni-easyinput type="text" v-model="form.email" placeholder="请输入邮箱" />
+				</uni-forms-item>
+			</uni-forms>
+		</uni-card>
+		<button size="default" @click="handleSubmit">保存</button>
 </template>
 <script setup>
 import { onLoad } from '@dcloudio/uni-app';
@@ -24,11 +24,7 @@ import { loginApi } from '@/api/login.js';
 const Store = useStore();
 const formRef = ref();
 const isOkLogin = ref(true);
-const form = reactive({
-	tenantId: '000000',
-	realName: '',
-	email: ''
-});
+const form = reactive({ ...Store.userInfo });
 const formRules = {
 	phone: {
 		rules: [
@@ -71,17 +67,4 @@ const handleSubmit = async () => {
 </script>
 
 <style scoped lang="scss">
-.account-form {
-	margin-top: 50rpx;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-}
-
-.submit-btn {
-	width: 100%;
-	height: 70rpx;
-	line-height: 70rpx;
-	margin-top: 40rpx;
-}
 </style>

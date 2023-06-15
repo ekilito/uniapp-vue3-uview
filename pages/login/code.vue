@@ -1,10 +1,10 @@
 <template>
 	<view class="code-form">
-		<uni-forms ref="lloginFormRef"  :rules="formRules" validateTrigger="blur" :model="form">
-			<uni-forms-item label="手机号码:" name="phone" label-width="100">
+		<uni-forms ref="lloginFormRef" :label-width="80" :rules="formRules" validateTrigger="blur" :model="form">
+			<uni-forms-item label="手机号码:" name="phone" >
 				<uni-easyinput type="text" v-model="form.phone" placeholder="请输入手机号码" />
 			</uni-forms-item>
-			<uni-forms-item  label="验证码:" name="code" label-width="100">
+			<uni-forms-item  label="验证码:" name="code">
 <view style="display: flex;">
 	<uni-easyinput type="code" v-model="form.code" placeholder="请输入验证码" />
 	<button class="code-btn" size="mini" :disabled="isCountDown" @click="handleGetCode">{{ isCountDown ? countDown + 's' : '获取验证码' }}</button>
@@ -109,7 +109,7 @@ const handleGetCode = async () => {
 
 <style scoped lang="scss">
 .code-form {
-	margin-top: 50rpx;
+	margin-top: 100rpx;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
