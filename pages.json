@@ -1,15 +1,5 @@
 {
 	"pages": [{
-			"path": "pages/user/index",
-			"style": {
-				"navigationBarTitleText": "个人中心",
-				"app-plus": {
-					"animationType": "pop-in",
-					"animationDuration": 300
-				}
-			}
-		},
-		{
 			"path": "pages/login/index",
 			"style": {
 				"navigationStyle": "custom"
@@ -73,6 +63,16 @@
 			"path": "pages/user/about",
 			"style": {
 				"navigationBarTitleText": "关于我们",
+				"app-plus": {
+					"animationType": "pop-in",
+					"animationDuration": 300
+				}
+			}
+		},
+		{
+			"path": "pages/user/index",
+			"style": {
+				"navigationBarTitleText": "个人中心",
 				"app-plus": {
 					"animationType": "pop-in",
 					"animationDuration": 300
