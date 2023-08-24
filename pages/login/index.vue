@@ -64,7 +64,7 @@ const handleChangeType = (playload) => {
 }
 
 .login-head {
-	margin-top: 140rpx;
+	margin-top: 60rpx;
 	height: 300rpx;
 	display: flex;
 	flex-direction: column;
