@@ -1,10 +1,12 @@
 <template>
-	<view class="">
-		首页
+	<view style="padding: 20px;">
+		
 	</view>
+	
 </template>
 
-<script>
+<script setup>
+
 </script>
 
 <style>
