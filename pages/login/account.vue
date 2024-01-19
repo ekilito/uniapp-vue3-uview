@@ -1,14 +1,14 @@
 <template>
 	<view class="account-form">
-		<uni-forms ref="loginFormRef" :rules="formRules" validateTrigger="blur" :model="form">
-			<uni-forms-item label="账号:" name="phone">
-				<uni-easyinput type="text" v-model="form.phone" placeholder="请输入手机号码" />
+		<uni-forms ref="loginFormRef" label-position="top" :rules="formRules" validateTrigger="blur" :model="form">
+			<uni-forms-item label="账号:" name="username">
+				<uni-easyinput type="text" v-model="form.username" placeholder="请输入账号" />
 			</uni-forms-item>
 			<uni-forms-item label="密码:" name="password">
-				<uni-easyinput type="password" v-model="form.password" placeholder="请输入6位以上密码" />
+				<uni-easyinput type="password" v-model="form.password" placeholder="请输入密码" />
 			</uni-forms-item>
 		</uni-forms>
-		<button class="login-btn" size="default" :disabled="isOkLogin" @click="handleSubmit">登录</button>
+		<button class="login-btn" type="primary" size="default" :disabled="isOkLogin" @click="handleSubmit">登录</button>
 	</view>
 </template>
 <script setup>
@@ -23,24 +23,18 @@ import { loginApi } from '@/api/login.js';
 
 const Store = useStore();
 const loginFormRef = ref();
-const isOkLogin = ref(true);
+const isOkLogin = ref(false);
 const form = reactive({
 	tenantId: '000000',
-	phone: '',
+	username: '',
 	password: ''
 });
 const formRules = {
-	phone: {
+	username: {
 		rules: [
 			{
 				required: true,
-				errorMessage: '请输入手机号'
-			},
-			{
-				validateFunction: (rule, value) => {
-					return validate.mobile(value);
-				},
-				errorMessage: '手机号码格式不正确'
+				errorMessage: '请输入账号'
 			}
 		]
 	},
@@ -49,10 +43,6 @@ const formRules = {
 			{
 				required: true,
 				errorMessage: '请输入密码'
-			},
-			{
-				minLength: 6,
-				errorMessage: '密码长度不少于6位数'
 			}
 		]
 	}
@@ -68,28 +58,29 @@ watch(
 	}
 );
 //判断信息格式取消按钮状态
-const hanldeJudge = (val) => {
-	if (validate.mobile(val.phone) && validate.rangeLength(val.password, [6, 50])) {
+async function hanldeJudge(val) {
+	if (val.username && val.password) {
 		isOkLogin.value = false;
 	} else {
 		isOkLogin.value = true;
 	}
-};
+}
 //登陆提交
-const handleSubmit = async () => {
+async function handleSubmit() {
 	form.password = trim(form.password, 'all');
-	form.phone = trim(form.phone, 'all');
+	form.username = trim(form.username, 'all');
 	let valid = await loginFormRef.value.validate();
 	if (!valid) return;
+
 	let info = deepClone(form);
 	info.password = md5(info.password);
-	// const res = await loginApi({
-	// 	tenantId: info.tenantId,
-	// 	username: info.phone,
-	// 	password: info.password
-	// });
+	const res = await loginApi({
+		tenantId: info.tenantId,
+		username: info.username,
+		password: info.password
+	});
 	Store.set('loginForm', form);
-	// Store.set('userInfo', res);
+	Store.set('userInfo', res);
 	uni.showLoading({
 		title: '登录成功',
 		mask: true
@@ -100,19 +91,12 @@ const handleSubmit = async () => {
 			url: '/pages/home/index'
 		});
 	}, 1500);
-};
-onLoad(() => {
-	//判断是否有历史登录信息
-	if ('tenantId' in Store.loginForm) {
-		Object.assign(form, Store.loginForm);
-		hanldeJudge(form);
-	}
-});
+}
 </script>
 
 <style scoped lang="scss">
 .account-form {
-	margin-top: 100rpx;
+	margin-top: 60rpx;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;

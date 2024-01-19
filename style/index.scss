@@ -1,2 +1,6 @@
-@import url("./btn.scss");
+@import url('./btn.scss');
 
+// 设置整个项目的背景色
+page {
+	background-color: $uni-bg-color;
+}

@@ -80,16 +80,18 @@ class Request {
 			// 是否显示loading
 			// 加一个是否已有timer定时器的判断，否则有两个同时请求的时候，后者会清除前者的定时器id
 			// 而没有清除前者的定时器，导致前者超时，一直显示loading
-			if (this.config.showLoading && !this.config.timer) {
-				this.config.timer = setTimeout(() => {
-					uni.showLoading({
-						title: this.config.loadingText,
-						mask: this.config.loadingMask
-					});
-					this.config.timer = null;
-				}, this.config.loadingTime);
-			}
-			uni.request(options);
+			// if (this.config.showLoading && !this.config.timer) {
+			// 	this.config.timer = setTimeout(() => {
+			// 		uni.showLoading({
+			// 			title: this.config.loadingText,
+			// 			mask: this.config.loadingMask
+			// 		});
+			// 		this.config.timer = null;
+			// 	}, this.config.loadingTime);
+			// }
+			//处理是上传文件还是表单接口
+			'isUpload' in options ? uni.uploadFile(options) : uni.request(options);
+			 // uni.request(options);
 		});
 		// .catch(res => {
 		// 	// 如果返回reject()，不让其进入this.$u.post().then().catch()后面的catct()
@@ -161,6 +163,15 @@ class Request {
 				method: 'DELETE',
 				header,
 				data
+			});
+		};
+
+		this.upload = (url, data = {}, header = {}) => {
+			return this.request({
+				url,
+				header,
+				isUpload: true,
+				...data
 			});
 		};
 	}

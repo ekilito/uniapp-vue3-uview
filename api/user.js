@@ -1,3 +1,7 @@
 import Http from './http';
 
-export const updatePasswordApi = (params) => Http.post('/xx/xxx/xxx', params); //修改密码
+let urlencoded = {
+	'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+};
+export const updatePasswordApi = (params) => Http.post('/blade-user/update-password', params,urlencoded); //更新密码
+export const UpdateInfoApi = (params) => Http.post('/blade-user/update-info', params); //更新信息

@@ -1,10 +1,9 @@
 <template>
 	<view class="user">
 		<view class="user-info">
-			<image :src="info.avator" style="width: 100rpx;" mode="widthFix"></image>
+			<image :src="info.avator" style="width: 100rpx;height: 100rpx;" mode="widthFix"></image>
 			<view class="base-info">
-				<view>账号：{{info.phone}}</view>
-				<view>用户名：{{info.name}}</view>
+				{{info.name}}
 			</view>
 		</view>
 		<uni-list>
@@ -27,9 +26,8 @@ const info = reactive({
 	name:';'
 })
 const getInfo = ()=>{
-	// info.avator = Store.userInfo.avator
-	info.phone = Store.userInfo.phone
-	info.name = Store.userInfo.name
+	info.name = Store.$state.userInfo.nick_name
+	info.avator = Store.$state.userInfo.avatar
 }
 getInfo()
 
@@ -53,6 +51,7 @@ const handleLoginOut = () => {
 	padding: 80rpx 60rpx;
 	background-color: $uni-main-color;
 	display: flex;
+	align-items: center;
 	.base-info{
 		margin-left: 40rpx;
 		color: $uni-white;

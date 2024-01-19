@@ -60,15 +60,8 @@ const refreshToken = async () => {
 
 <style lang="scss">
 /*每个页面公共css */
-@import "@/uni_modules/uni-scss/index.scss";
-/* #ifndef APP-NVUE */
-@import "@/style/customicons.css";
-/* #endif */
-
 @import "@/style/index.scss";
 
-// 设置整个项目的背景色
-page {
-  background-color: $uni-bg-color;
-}
+@import "@/uni_modules/uni-scss/index.scss";
+
 </style>

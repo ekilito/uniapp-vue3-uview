@@ -1,4 +1,8 @@
 import Http from "./http";
+
+let appendUrl = {
+	'content-type': 'application/x-www-form-urlencoded;charset=UTF-8'
+};
 //登陆
 export const loginApi = (params) =>
   Http.post("/blade-auth/oauth/token", {
@@ -6,7 +10,7 @@ export const loginApi = (params) =>
     scope: "all",
     type: "account",
     ...params,
-  });
+  },appendUrl);
 
 //刷新token
 export const refreshTokenApi = (params) =>
