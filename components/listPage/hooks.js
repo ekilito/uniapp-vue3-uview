@@ -1,19 +1,19 @@
-import { ref, onUnmounted, unref, watch, toRaw } from 'vue';
+import { ref } from 'vue';
 
 export function useListPage(props) {
-  const elRef = ref(null);
+	const elRef = ref(null);
 
-  function register(instance) {
-    elRef.value = instance;
-    props && instance.setProps(props);
-		instance.reload()
-  }
+	function register(instance) {
+		elRef.value = instance;
+		props && instance.setProps(props);
+		instance.reload();
+	}
 
-  const methods = {
-    reload: (params) => {
-      elRef.value.reload(params);
-    },
-  };
+	const methods = {
+		reload: (params) => {
+			elRef.value.reload(params);
+		}
+	};
 
-  return [register, methods];
+	return [register, methods];
 }

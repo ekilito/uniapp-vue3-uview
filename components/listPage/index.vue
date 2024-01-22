@@ -12,7 +12,7 @@
 			</view>
 
 			<view v-else class="list-empty">暂无列表内容</view>
-			<uni-load-more v-else :status="loadStatus"></uni-load-more>
+			<uni-load-more  :status="loadStatus"></uni-load-more>
 		</scroll-view>
 	</view>
 </template>

@@ -1,10 +1,9 @@
 <template>
-	<view class="form-render" v-if="filterWidgetList.length > 0">
-		<uni-forms ref="formRef" :modelValue="formData" :label-width="maxWidth">
-			<uni-forms-item :label="item.label + ':'" :name="item.field" :required="item.required" :rules="getRule(item)" v-for="(item, index) in filterWidgetList" :key="index">
+	<view class="form-render" v-if="formInfo.columns.length > 0">
+		<uni-forms ref="formRef" :modelValue="formData" :label-width="formInfo.maxWidth">
+			<uni-forms-item :label="item.label + ':'" :name="item.field" :required="item.required" :rules="getRule(item)" v-for="(item, index) in formInfo.columns" :key="index">
 				<template v-if="'slot' in item">
-					<slot name="projectId-device" :column="item" :filed="formData"></slot>
-					<slot name="projectId-repairs" :column="item" :filed="formData"></slot>
+					<slot :name="item.field" :column="item" :filed="formData"></slot>
 				</template>
 				<uni-easyinput
 					v-else-if="['Input', 'InputTextArea'].includes(item.component)"
@@ -40,7 +39,7 @@
 					:type="item.component == 'date-range' ? 'datetimerange' : 'datetime'"
 					:disabled="item.dynamicDisabled"
 				/>
-				<zxz-uni-data-select
+				<data-select
 					v-else-if="['Select', 'ApiSelect'].includes(item.component)"
 					:placeholder="item.placeholder || '请选择' + item.label"
 					v-model="formData[item.field]"
@@ -48,9 +47,9 @@
 					:localdata="item.componentProps.options"
 					:multiple="item.componentProps.multiple"
 					:clear="item.clearable"
-				></zxz-uni-data-select>
+				></data-select>
 				<uni-data-picker
-					v-else-if="['ApiTree','Tree'].includes(item.component)"
+					v-else-if="['ApiTree', 'Tree'].includes(item.component)"
 					:placeholder="item.placeholder || '请选择' + item.label"
 					:localdata="item.componentProps.options"
 					:map="item.componentProps.fieldNames"
@@ -66,24 +65,19 @@
 </template>
 
 <script setup>
-import { ref, defineProps, watch, defineExpose } from 'vue';
+import { ref, reactive } from 'vue';
 import UploadPicker from '@/components/upload-picker.vue';
+import DataSelect from '@/components/data-select.vue';
+const emits = defineEmits(['register']);
 
+const formInfo = reactive({
+	maxWidth: '120',
+	columns: []
+});
 const formData = ref({});
 const formRef = ref();
 
-const filterWidgetList = ref([]);
-
-const props = defineProps({
-	formSchema: {
-		type: Array
-	},
-	maxWidth: {
-		type: Number,
-		default: 80
-	}
-});
-
+//生成表单项基本规则
 function getRule(item) {
 	if (item.rules) {
 		return item.rules;
@@ -107,49 +101,66 @@ function TreeChange(e, prop) {
 	formData.value[prop] = arr;
 }
 
-watch(
-	() => props.formSchema,
-	async (val) => {
-		const allPromise = [];
-		const newFormSchema = val.map((item) => {
-			if ('component' in item) {
-				if (item.component == 'ApiSelect') {
-					const itemPromise = new Promise(async (resolve) => {
-						item.componentProps.options = (await item.componentProps.api(item.componentProps.params)).map((e) => {
-							return {
-								text: e[item.componentProps?.fieldNames?.label || 'label'],
-								value: e[item.componentProps?.fieldNames?.value || 'value']
-							};
-						});
-						resolve(item);
-					});
-					allPromise.push(itemPromise);
-				} else if (item.component == 'ApiTree') {
-					const itemPromise = new Promise(async (resolve) => {
-						item.componentProps.options = await item.componentProps.api(item.componentProps.params);
-						resolve(item);
-					});
-					allPromise.push(itemPromise);
-				}
-			}
-			return item;
-		});
-		await Promise.all(allPromise);
-		filterWidgetList.value = newFormSchema;
-	},
-	{
-		immediate: true
-	}
-);
+//初始化加载，只执行一次
+async function init(props) {
+	Object.assign(formInfo, props);
+	formInfo.columns = await dealColumns(formInfo.columns);
+}
 
-const validateForm = async () => {
+//处理表单项配置
+async function dealColumns(columns) {
+	if (!columns.length) return;
+	const allPromise = [];
+	const newColumns = columns.map((item) => {
+		if ('component' in item) {
+			if (item.component == 'ApiSelect') {
+				const itemPromise = new Promise(async (resolve) => {
+					item.componentProps.options = (await item.componentProps.api(item.componentProps.params)).map((e) => {
+						return {
+							text: e[item.componentProps?.fieldNames?.label || 'label'],
+							value: e[item.componentProps?.fieldNames?.value || 'value']
+						};
+					});
+					resolve(item);
+				});
+				allPromise.push(itemPromise);
+			} else if (item.component == 'ApiTree') {
+				const itemPromise = new Promise(async (resolve) => {
+					item.componentProps.options = await item.componentProps.api(item.componentProps.params);
+					resolve(item);
+				});
+				allPromise.push(itemPromise);
+			}
+		}
+		return item;
+	});
+	await Promise.all(allPromise);
+
+	return newColumns;
+}
+
+//更新表单项
+async function updateColumns(list) {
+	formInfo.columns = await dealColumns(list);
+}
+
+//手动表单校验
+function validateForm() {
 	return formRef.value.validate();
-};
-defineExpose({
-	formRef,
-	formData,
-	validateForm
-});
+}
+
+//获取表单数据
+function getFormData() {
+	return formData.value;
+}
+
+//设置表单数据
+function setFormData(val) {
+	 Object.assign(formData.value,val)
+}
+
+
+emits('register', { init, validateForm, getFormData,setFormData,updateColumns });
 </script>
 
 <style lang="scss" scoped>
