@@ -1,2 +1,2 @@
 export { useFormRender } from './hooks.js';
-export {default as formRender} from './index.vue';
+export {default as FormRender} from './index.vue';

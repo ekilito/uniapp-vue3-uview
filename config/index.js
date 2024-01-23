@@ -9,8 +9,8 @@ const online = {
 
 const dev = {
 	version: '测试版本',
-	baseUrl: 'http://192.168.1.240:38802',
-	action: 'http://192.168.1.240:38802/blade-resource/oss/endpoint/put-file-attach',
+	baseUrl: 'http://xxx',
+	action: 'http://xxx/blade-resource/oss/endpoint/put-file-attach',
 	img_path: 'http://xxx/',
 	applicationLogo: 'xxxx',
 	download_path: 'https://3h1-wms.oss-cn-hangzhou.aliyuncs.com/apk/xxxxx/app-release.apk',
