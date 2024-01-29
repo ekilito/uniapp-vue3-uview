@@ -11,7 +11,7 @@
 			<uni-list-item title="修改密码" showArrow clickable link="navigateTo" to="/pages/user/editPassword"></uni-list-item>
 			<uni-list-item title="关于我们" showArrow clickable link="navigateTo" to="/pages/user/about"></uni-list-item>
 		</uni-list>
-		<button class="login-out-btn" size="default" @click="handleLoginOut">退出登录</button>
+		<button class="login-out-btn" size="primary" @click="handleLoginOut">退出登录</button>
 	</view>
 </template>
 
@@ -61,7 +61,5 @@ const handleLoginOut = () => {
 .login-out-btn{
 	margin-top: 80rpx;
 	width: 700rpx;
-	background-color: $uni-warning;
-	color: $uni-white;
 }
 </style>

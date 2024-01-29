@@ -21,7 +21,7 @@
 import { ref, reactive, watch } from 'vue';
 import validate from '@/utils/validate.js';
 import useStore from '@/stores';
-import { detailApi, UpdateInfoApi } from '@/api/user.js';
+import { detailApi, updateInfoApi } from '@/api/user.js';
 
 const Store = useStore();
 const formRef = ref();
@@ -79,7 +79,7 @@ const formRules = reactive({
 const handleSubmit = async () => {
 	let valid = await formRef.value.validate();
 	if (!valid) return;
-	await UpdateInfoApi(form);
+	await updateInfoApi(form);
 	uni.showToast({
 		title: `修改成功`
 	});

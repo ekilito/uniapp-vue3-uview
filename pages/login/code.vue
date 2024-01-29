@@ -1,13 +1,13 @@
 <template>
 	<view class="code-form">
-		<uni-forms ref="lloginFormRef" :label-width="80" :rules="formRules" validateTrigger="blur" :model="form">
+		<uni-forms ref="loginFormRef" label-position="top"  :label-width="80" :rules="formRules" validateTrigger="blur" :model="form">
 			<uni-forms-item label="手机号码:" name="phone" >
 				<uni-easyinput type="text" v-model="form.phone" placeholder="请输入手机号码" />
 			</uni-forms-item>
 			<uni-forms-item  label="验证码:" name="code">
 <view style="display: flex;">
 	<uni-easyinput type="code" v-model="form.code" placeholder="请输入验证码" />
-	<button class="code-btn" size="mini" :disabled="isCountDown" @click="handleGetCode">{{ isCountDown ? countDown + 's' : '获取验证码' }}</button>
+	<button class="code-btn" size="mini" :disabled="isCountDown" @click="handleGetCode">{{ isCountDown ? countDown + 's' : '验证码' }}</button>
 </view>
 			
 			</uni-forms-item>
@@ -25,7 +25,7 @@ import { trim } from '@/utils/filter.js';
 import useStore from '@/stores';
 
 const Store = useStore();
-const lloginFormRef = ref();
+const loginFormRef = ref();
 const isCountDown = ref(false);
 const countDown = ref(0);
 const isOkLogin = ref(true);
@@ -92,7 +92,7 @@ const handleSubmit = async () => {
 
 //获取验证码
 const handleGetCode = async () => {
-	const flag = await lloginFormRef.value.validateField('phone')
+	const flag = await loginFormRef.value.validateField('phone')
 	if(!form.phone)return
 	countDown.value = 60;
 	isCountDown.value = true;
