@@ -1,0 +1,9 @@
+{
+	"scripts": {
+		"deploy": "npx shy ftp deploy -f ./deploy"
+	},
+	"dependencies": {
+		"vite-plugin-windicss": "^1.9.3",
+		"windicss": "^3.5.6"
+	}
+}
