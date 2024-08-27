@@ -2,7 +2,8 @@
     "scripts": {
         "deploy": "npx shy ftp deploy -f ./deploy"
     },
-    "dependencies": {
+    "devDependencies": {
+        "@dcasia/mini-program-tailwind-webpack-plugin": "^1.5.7",
         "vite-plugin-windicss": "^1.9.3",
         "windicss": "^3.5.6"
     }
