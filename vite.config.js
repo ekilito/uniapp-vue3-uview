@@ -1,7 +1,5 @@
 import uni from "@dcloudio/vite-plugin-uni";
 
-import MiniProgramTailwind from "@dcasia/mini-program-tailwind-webpack-plugin/rollup";
-
 import { defineConfig } from "vite";
 
 import WindiCSS from "vite-plugin-windicss";
@@ -15,7 +13,6 @@ export default defineConfig({
         fileExtensions: ["vue", "js", "ts"], // 同时启用扫描vue/js/ts
       },
     }),
-    MiniProgramTailwind(),
   ],
   server: {
     base: "./", //生产环境路径
