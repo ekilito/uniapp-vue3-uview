@@ -10,7 +10,7 @@
 
 <script setup>
 import useStore from "@/stores/index.js";
-import { ref, defineProps, defineEmits, watch } from "vue";
+import { ref, defineProps, watch } from "vue";
 const props = defineProps(["field", "value", "type"]);
 const emit = defineEmits(["update:value"]);
 const fileList = ref([]);
@@ -81,3 +81,4 @@ const uploadFilePromise = (url) => {
   });
 };
 </script>
+

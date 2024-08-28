@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
 	<view class="code-form">
 		<uni-forms ref="loginFormRef" label-position="top"  :label-width="80" :rules="formRules" validateTrigger="blur" :model="form">
 			<uni-forms-item label="手机号码:" name="phone" >
@@ -127,4 +127,6 @@ const handleGetCode = async () => {
 	width: 100%;
 	margin-top: 40rpx;
 }
-</style>
+</style> -->
+
+<template>123</template>

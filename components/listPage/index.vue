@@ -25,7 +25,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, defineEmits, defineProps, defineExpose } from "vue";
+import { ref, reactive, defineProps, defineExpose } from "vue";
 
 const props = defineProps({
   beforeFetch: {
