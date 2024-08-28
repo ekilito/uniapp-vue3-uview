@@ -67,9 +67,6 @@ async function hanldeJudge(val) {
 }
 //登陆提交
 async function handleSubmit() {
-  uni.reLaunch({
-    url: "/pages/home/index",
-  });
   form.password = trim(form.password, "all");
   form.username = trim(form.username, "all");
   let valid = await loginFormRef.value.validate();
