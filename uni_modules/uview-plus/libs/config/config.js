@@ -2,7 +2,7 @@ const version = '3'
 
 // 开发环境才提示，生产环境不会提示
 if (process.env.NODE_ENV === 'development') {
-	console.log(`\n %c uview-plus V${version} %c https://ijry.github.io/uview-plus/ \n\n`, 'color: #ffffff; background: #3c9cff; padding:5px 0;', 'color: #3c9cff;background: #ffffff; padding:5px 0;');
+    console.log(`\n %c uview-plus V${version} %c https://ijry.github.io/uview-plus/ \n\n`);
 }
 
 export default {
@@ -28,6 +28,6 @@ export default {
         'u-tips-color': '#909399',
         'u-light-color': '#c0c4cc'
     },
-	// 默认单位，可以通过配置为rpx，那么在用于传入组件大小参数为数值时，就默认为rpx
-	unit: 'px'
+    // 默认单位，可以通过配置为rpx，那么在用于传入组件大小参数为数值时，就默认为rpx
+    unit: 'px'
 }
