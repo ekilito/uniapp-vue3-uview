@@ -15,12 +15,7 @@
         <u-input v-model="form.phone" placeholder="请输入手机号"></u-input>
       </uni-forms-item>
       <uni-forms-item label="性别" name="sex">
-        <uni-data-select
-          v-model="form.sex"
-          :localdata="sexKv"
-          @change="change"
-          placeholder="请选择性别"
-        ></uni-data-select>
+        <uni-data-select v-model="form.sex" :localdata="sexKv" placeholder="请选择性别"></uni-data-select>
       </uni-forms-item>
       <uni-forms-item label="所属公司" name="deptName">
         <u-input v-model="form.deptName" disabled></u-input>
@@ -92,10 +87,10 @@ const handleSubmit = async () => {
   let valid = await formRef.value.validate();
   if (!valid) return;
   await updateInfoApi(form);
+  uni.navigateBack();
   uni.showToast({
     title: `修改成功`,
   });
-  uni.navigateBack();
 };
 </script>
 <style></style>

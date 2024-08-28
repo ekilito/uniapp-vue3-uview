@@ -32,4 +32,4 @@ let wdlDev = {
 
 //根据要打的app包注释不同的ip
 // export default online;
-export default proxy;
+export default wdlDev;

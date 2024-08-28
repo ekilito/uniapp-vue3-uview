@@ -91,7 +91,8 @@ const hanldeJudge = (val) => {
 const handleSubmit = async () => {
   let valid = await loginFormRef.value.validate();
   if (!valid) return;
-  const res = await loginApi({
+  const info = Store.$state.loginForm;
+  await loginApi({
     tenantId: info.tenantId,
     username: info.phone,
     password: info.password,
