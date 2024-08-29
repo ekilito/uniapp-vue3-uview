@@ -169,8 +169,8 @@ async function handleSubmit() {
 }
 
 .user-icon {
-  width: 33px !important;
-  height: 19px !important;
+  width: 40rpx;
+  height: 40rpx;
   padding-left: 22rpx;
 }
 

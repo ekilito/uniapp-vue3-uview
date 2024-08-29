@@ -5,7 +5,6 @@ import {
 import App from "./App.vue";
 import useStore from "@/stores/index.js";
 
-//import "virtual:windi.css";
 
 //引入uview3x版本组件
 import uviewPlus from '@/uni_modules/uview-plus'

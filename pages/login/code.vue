@@ -128,7 +128,9 @@ const handleGetCode = async () => {
   color: $uni-white;
   background-color: $uni-success;
   font-size: 20rpx;
-  line-height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .login-btn {
