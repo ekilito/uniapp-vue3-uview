@@ -24,12 +24,6 @@ const proxy = {
     img_path: "http://localhost:5173/",
 };
 
-let wdlDev = {
-    version: "测试版本",
-    baseUrl: "http://192.168.1.104:9500/", //接口地址
-    action: "http://192.168.1.104:9500/business/file/upload", //文件上传地址
-};
-
 //根据要打的app包注释不同的ip
 // export default online;
-export default wdlDev;
+export default proxy;
