@@ -4,14 +4,14 @@
       <uni-forms-item label="账号:" name="username" class="no-label">
         <uni-easyinput type="text" v-model="form.username" placeholder="请输入账号">
           <template #left>
-            <image src="/static/images/login/username.png" alt="icon" class="user_icon" />
+            <image src="/static/images/login/username.png" alt="icon" class="user-icon" />
           </template>
         </uni-easyinput>
       </uni-forms-item>
       <uni-forms-item label="密码:" name="password" class="no-label">
         <uni-easyinput type="password" v-model="form.password" placeholder="请输入密码">
           <template #left>
-            <image src="/static/images/login/password.png" alt="icon" class="user_icon" />
+            <image src="/static/images/login/password.png" alt="icon" class="user-icon" />
           </template>
         </uni-easyinput>
       </uni-forms-item>
@@ -168,9 +168,9 @@ async function handleSubmit() {
   background: #2991ff;
 }
 
-.user_icon {
-  width: 66rpx;
-  height: 38rpx;
+.user-icon {
+  width: 33px !important;
+  height: 19px !important;
   padding-left: 22rpx;
 }
 
